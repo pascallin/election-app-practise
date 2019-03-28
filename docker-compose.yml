@@ -1,12 +1,12 @@
 version: '3'
 services: 
-  # app:
-  #   build: .
-  #   links: 
-  #     - local-mysql
-  #     - local-redis
-  #   ports:
-  #     - '3000:3000'
+  app:
+    build: .
+    links: 
+      - local-mysql
+      - local-redis
+    ports:
+      - '3000:3000'
   local-mysql:
     image: mysql:5.7
     restart: always

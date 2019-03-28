@@ -1,12 +1,12 @@
 version: '3'
 services: 
-  app:
-    build: .
-    links: 
-      - local-mysql
-      - local-redis
-    ports:
-      - '3000:3000'
+  # app:
+  #   build: .
+  #   links: 
+  #     - local-mysql
+  #     - local-redis
+  #   ports:
+  #     - '3000:3000'
   local-mysql:
     image: mysql:5.7
     restart: always
@@ -14,7 +14,7 @@ services:
       - ./db/data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: asdfg
-    # expose ports for test and check
+    # expose ports for development environment
     ports:
       - "3307:3306"
   local-redis:
@@ -22,7 +22,7 @@ services:
     restart: always
     volumes:
       - ./redis/data:/data
-    # expose ports for test and check
+    # expose ports for development environment
     ports:
       - "6279:6379" 
     command: redis-server --appendonly yes

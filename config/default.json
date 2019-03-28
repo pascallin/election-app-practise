@@ -1,0 +1,28 @@
+{
+    "domain": "localhost",
+    "port": 3000,
+    "secret": "election-said-shhh",
+    "mysql": {
+        "host": "local-mysql",
+        "port": "3306",
+        "user": "root",
+        "password": "asdfg",
+        "database": "election"
+    },
+    "redis": {
+        "host": "local-redis",
+        "port": 6379
+    },
+    "email": {
+        "service": "smtp.163.com",
+        "host": "smtp.163.com",
+        "secureConnection": true,
+        "port": 465,
+        "auth": {
+            "user": "electionapp@163.com",
+            "pass": "123456asdf"
+        }
+    },
+    "fakeToken": "pascalsaidyouarenotadmin",
+    "electionId": 1
+}

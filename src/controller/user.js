@@ -1,4 +1,5 @@
 const utils = require('../lib/utils')
+const sendEmail = require('../lib/email')
 
 module.exports = {
   register: async (ctx) => {
@@ -10,6 +11,7 @@ module.exports = {
       email, password: utils.cryptPwd(password, salt), salt
     }
     const result = await db.table('user').insert(user)
+    await sendEmail(email)
     ctx.body = { data: result }
   },
   validate: async (ctx) => {

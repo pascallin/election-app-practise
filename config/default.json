@@ -7,7 +7,10 @@
         "port": "3306",
         "user": "root",
         "password": "asdfg",
-        "database": "election"
+        "database": "election",
+        "migrations": {
+            "tableName": "migrations"
+        }
     },
     "redis": {
         "host": "local-redis",

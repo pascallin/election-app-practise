@@ -7,13 +7,21 @@ const code = require('../src/lib/code')
 describe('election test', () => {
   it('update start and end time', async () => {
     let res = await request('http://localhost:3000')
+      .get('/election')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+    expect(res.body).to.have.property('code')
+    expect(res.body.code).to.equal(code.SUCCESS)
+    let { start, end } = res.body.data
+    res = await request('http://localhost:3000')
       .put('/election')
-      .send({ start: '2019-03-27 17:00:00', end: '2019-03-28 17:00:00' })
+      .send({ start, end })
       .set('Accept', 'application/json')
       .set('fake-token', config.get('fakeToken'))
       .expect('Content-Type', /json/)
       .expect(200)
-    expect(res.body).to.have.property('data')
+    expect(res.body).to.have.property('code')
     expect(res.body.code).to.equal(code.SUCCESS)
   })
   it('update time limit', async () => {

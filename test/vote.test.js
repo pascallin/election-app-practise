@@ -79,7 +79,7 @@ describe('vote test', () => {
       let res = await request('http://localhost:3000')
         .post('/election/vote')
         .set('x-api-key', token)
-        .send({ candidates: [ 2, 3, 4, 6 ] })
+        .send({ candidates: [ 1, 2, 3, 4 ] })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)

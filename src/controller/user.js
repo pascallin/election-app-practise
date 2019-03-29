@@ -11,7 +11,8 @@ module.exports = {
       email, password: utils.cryptPwd(password, salt), salt
     }
     const result = await db.table('user').insert(user)
-    await sendEmail(email)
+    const res = await sendEmail(email)
+    console.log(res)
     ctx.body = { data: result }
   },
   validate: async (ctx) => {

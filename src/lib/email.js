@@ -5,8 +5,13 @@ const utils = require('./utils')
 
 function getRegisterTemplate (email) {
   return {
-    subject: 'Election App user register validate',
-    html: `<h3>Please Click the link to finish register.</h3><p><a>http://${config.get('domain')}:${config.get('port')}/user/validate?token=${utils.signToken({ email })}</a></p>` // add token
+    subject: 'Election App用户注册验证',
+    html: `
+      <h3>请复制下面链接用浏览器打开进行验证</h3>
+      <p>
+      <a>${config.get('domain')}:${config.get('port')}/user/validate?token=${utils.signToken({ email })}</a>
+      </p>
+    `
   }
 }
 

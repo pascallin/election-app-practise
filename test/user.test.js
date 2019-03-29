@@ -6,6 +6,8 @@ const code = require('../src/lib/code')
 
 describe('user test', () => {
   it('register and validate', async () => {
+    // send email take times
+    this.timeout(5000)
     let res = await request('http://localhost:3000')
       .post('/user/register')
       .send({ email: 'pascal_lin@foxmail.com', password: '123456' })

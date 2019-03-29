@@ -11,6 +11,12 @@
 ##### 停止命令
 `docker-compose down`
 
+### 测试
+```
+npm i
+npm run test
+```
+
 ### 技术选型
 - http框架使用koa
 - 数据库使用mysql，ORM使用knex

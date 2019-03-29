@@ -7,4 +7,4 @@ RUN npm install > /dev/null
 EXPOSE 3000
 ARG NODE_ENV
 ENV TZ Asia/Shanghai
-CMD ["pm2-runtime", "start", "index.js"]
+CMD ["pm2", "start", "index.js"]

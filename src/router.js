@@ -12,10 +12,13 @@ router.put('/election', operator(), validate({
   start: Joi.string().required(),
   end: Joi.string().required()
 }), electionController.manage)
+
+// vote
+const voteController = require('./controller/vote')
 router.post('/election/vote', user(), validate({
   candidates: Joi.array().items(Joi.number()) // limit candidates vote count
-}), electionController.vote)
-router.get('/election/votes', operator(), electionController.votes)
+}), voteController.vote)
+router.get('/election/votes', operator(), voteController.votes)
 
 // candidate
 const candidateController = require('./controller/candidate')

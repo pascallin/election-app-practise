@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const cache = require('../service/cache')
+const config = require('config')
 
 module.exports = {
   getList: async (ctx) => {
@@ -12,7 +13,8 @@ module.exports = {
     ctx.body = { data: res }
   },
   add: async (ctx) => {
-    const res = await db.table('candidate').insert(ctx.request.body)
+    const res = await db.table('candidate')
+      .insert(_.merge(ctx.request.body, { election_id: config.get('electionId') }))
     await cache.syncCandidates()
     ctx.body = {
       data: { id: res[0] }

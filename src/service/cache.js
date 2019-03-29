@@ -10,11 +10,13 @@ module.exports = {
   load: async (electionId) => {
     // candidates cache set
     const candidates = await db.table('candidate').select('id', 'name', 'vote_count')
-    await redis.sadd(`candidates`, candidates.map(v => v.id))
-    // load candidates name and votes
-    for (let candidate of candidates) {
-      await redis.set(`candidate${candidate.id}:name`, candidate.name)
-      await redis.set(`candidate${candidate.id}:votes`, candidate.vote_count)
+    if (candidates.length > 0) {
+      await redis.sadd(`candidates`, candidates.map(v => v.id))
+      // load candidates name and votes
+      for (let candidate of candidates) {
+        await redis.set(`candidate${candidate.id}:name`, candidate.name)
+        await redis.set(`candidate${candidate.id}:votes`, candidate.vote_count)
+      }
     }
   },
   vote: async (candidateIdList) => {
@@ -38,7 +40,7 @@ module.exports = {
     for (let id of candidates) {
       let name = await redis.get(`candidate${id}:name`)
       let votes = await redis.get(`candidate${id}:votes`)
-      result.push({ name, votes })
+      result.push({ id, name, votes })
     }
     return result
   },

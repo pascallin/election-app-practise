@@ -13,7 +13,7 @@ describe('user test', () => {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
-    console.time('exec')
+    console.timeEnd('exec')
     expect(res.body).to.have.property('code')
     if (res.body.code === code.SUCCESS) {
       let token = utils.signToken({ email: 'pascal_lin@foxmail.com' })
@@ -24,7 +24,7 @@ describe('user test', () => {
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
-      console.time('exec')
+      console.timeEnd('exec')
       expect(res.body).to.have.property('data')
     }
   })

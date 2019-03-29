@@ -7,9 +7,20 @@
 - docker
 - docker-compose
 ##### 启动命令
-`docker-compose up -d`
+```
+docker-compose up -d
+```
 ##### 停止命令
-`docker-compose down`
+```
+docker-compose down
+```
+
+#### 更新
+```
+docker-compose down
+docker-compose build
+docker-compose up -d
+```
 
 ### 测试
 ```

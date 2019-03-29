@@ -2,11 +2,6 @@ const config = require('config')
 const server = require('./server')
 const cache = require('./service/cache')
 
-// load response code
-global.CODE = require('./lib/code')
-// load db
-global.db = require('./lib/knex')
-
 async function main () {
   await init()
   // server start
@@ -14,9 +9,15 @@ async function main () {
   console.log(`app listening on ${config.get('port')}`)
 }
 
-main()
+main().catch(e => {
+  process.exit(1)
+})
 
 async function init () {
+  // load response code
+  global.CODE = require('./lib/code')
+  // load db
+  global.db = require('./lib/knex')
   // load election
   const record = await global.db.table('election').first()
   if (!record) {

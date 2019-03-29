@@ -6,22 +6,25 @@ const code = require('../src/lib/code')
 
 describe('user test', () => {
   it('register and validate', async () => {
-    this.setTimeout(5000)
+    console.time('exec')
     let res = await request('http://localhost:3000')
       .post('/user/register')
       .send({ email: 'pascal_lin@foxmail.com', password: '123456' })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
+    console.time('exec')
     expect(res.body).to.have.property('code')
     if (res.body.code === code.SUCCESS) {
       let token = utils.signToken({ email: 'pascal_lin@foxmail.com' })
       expect(token).to.be.a('string')
+      console.time('exec')
       res = await request('http://localhost:3000')
         .get('/user/validate?token=' + token)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
+      console.time('exec')
       expect(res.body).to.have.property('data')
     }
   })

@@ -12,8 +12,10 @@ services:
     restart: always
     volumes:
       - ./db/data:/var/lib/mysql
+      - ./db/election.sql:/docker-entrypoint-initdb.d/election.sql
     environment:
       MYSQL_ROOT_PASSWORD: asdfg
+      MYSQL_DATABASE: election
     # expose ports for development environment
     ports:
       - "3307:3306"
